@@ -2,7 +2,6 @@
 
 import matplotlib.pyplot as plt
 import math
-from pkg_resources import yield_lines 
 
 import streamlit as st
 
@@ -89,11 +88,11 @@ if __name__ == "__main__":
         category = st.sidebar.selectbox(f'Category{str(l)}', options=['陰陽', '自由指定'])
         if category == '自由指定':
             lines = st.sidebar.text_input(f'Pin Number List {str(l)}', value='1 4 8 16')
-            color =st.sidebar.color_picker(f'Color{str(l)}', value=colorlist[len(colorlist) % l])
+            color =st.sidebar.color_picker(f'Color{str(l)}', value=colorlist[l % len(colorlist)])
             drawline(n, lines, color)
         elif category == '陰陽':
             start = st.sidebar.number_input(f'Start Pin{str(l)}', value = 0)
-            color =st.sidebar.color_picker(f'Color{str(l)}', value=colorlist[len(colorlist) % l])
+            color =st.sidebar.color_picker(f'Color{str(l)}', value=colorlist[l % len(colorlist)])
             drawinyo(n, start, color)
 
     drawmandara(n, pnum)
