@@ -54,6 +54,37 @@ def drawinyo(n, start, color):
 
     plt.plot(x,y,color=color)
 
+def show_pin_number(n):
+    angle = 360 / n
+    for i in range(n):
+        th = math.radians(angle * i)
+        r = 105
+        plt.text(r * math.cos(th), r * math.sin(th), str(i), fontsize=7, horizontalalignment='center')
+
+def draw_circle(n,):
+    fig2 = plt.figure(figsize=(8, 8))
+
+    # disappear ticks
+    plt.tick_params(labelbottom=False,
+                    labelleft=False, 
+                    labelright=False, 
+                    labeltop=False,
+                    bottom=False,
+                    left=False,
+                    right=False)
+    ax = fig2.add_subplot(1,1,1)
+    # ax = plt.axes()
+    angle = 360 / n
+    for i in range(n):
+        th = math.radians(angle * i)
+        ax.plot([0,100 * math.cos(th)], [0,100 * math.sin(th)], color='gray', linewidth=0.5)
+    circle = plt.Circle((0,0),100, fill=False)
+    ax.add_patch(circle)
+    st.write(fig2)
+
+
+# %%
+
 if __name__ == "__main__":
     # set figure
     fig = plt.figure(figsize=(8, 8))
@@ -97,8 +128,15 @@ if __name__ == "__main__":
 
     drawmandara(n, pnum)
 
+    # pin number
+    if st.sidebar.checkbox('Show pin number'):
+        show_pin_number(n)
+
     # if st.sidebar.button('OK'):
     st.write(fig)
+
+    if st.sidebar.button('台紙'):
+        draw_circle(n)
 
 
 # plt.show()
